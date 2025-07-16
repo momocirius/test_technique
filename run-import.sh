@@ -1,6 +1,6 @@
 echo "RUNNING APP..."
 echo "---------"
-docker-compose exec app php /var/app/src/app.php || echo "Error while running app..."
+docker compose exec app php public/index.php || echo "Error while running app..."
 
 echo "---------"
 echo 'DONE.'

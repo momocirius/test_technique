@@ -4,3 +4,9 @@
 # Visual studio
 .vscode/
 .vscode/*
+
+# Composer
+vendor/
+
+# PHPUnit
+.phpunit.result.cache

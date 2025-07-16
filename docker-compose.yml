@@ -1,13 +1,8 @@
-version: "3.7"
-
 services:
   app:
     build: ./
-    #ports:
-    #  - 8080:80
     volumes:
-      - ./src/:/var/app/src
-      - ./resources/:/var/app/resources
+      - ./:/srv/app
     depends_on:
       - mariadb
 
@@ -19,12 +14,3 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     command: "mysqld --init-file /data/application/init.sql"
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
-    ports:
-      - 8000:80
-    environment:
-      - PMA_HOST=mariadb
-    depends_on:
-      - mariadb

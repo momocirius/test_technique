@@ -2,31 +2,29 @@
 
 declare(strict_types=1);
 
+namespace App\Importer;
+
 final class JobsImporter
 {
-    private PDO $db;
+    private \PDO $db;
 
-    private string $file;
-
-    public function __construct(string $host, string $username, string $password, string $databaseName, string $file)
+    public function __construct(string $host, string $username, string $password, string $databaseName)
     {
-        $this->file = $file;
-        
         /* connect to DB */
         try {
-            $this->db = new PDO('mysql:host=' . $host . ';dbname=' . $databaseName, $username, $password);
-        } catch (Exception $e) {
+            $this->db = new \PDO('mysql:host=' . $host . ';dbname=' . $databaseName, $username, $password);
+        } catch (\Exception $e) {
             die('DB error: ' . $e->getMessage() . "\n");
         }
     }
 
-    public function importJobs(): int
+    public function importJobs(string $file): int
     {
         /* remove existing items */
         $this->db->exec('DELETE FROM job');
 
         /* parse XML file */
-        $xml = simplexml_load_file($this->file);
+        $xml = simplexml_load_file($file);
 
         /* import each item */
         $count = 0;

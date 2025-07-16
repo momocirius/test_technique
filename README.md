@@ -1,40 +1,49 @@
-# Test ChooseMyCompany - dev back / fullstack #
+# Test technique ChooseMyCompany – Développeur back-end / fullstack
 
-**Confidentiel - ne pas transmettre**
+**Confidentiel – Ne pas transmettre**
 
+## Pré-requis
+- Docker installé
 
-Pré-requis :
----
-Docker
+## Contexte
 
-Contexte :
----
 ChooseMyCompany est un site d'information sur les employeurs.  
-Grace aux enquêtes salariés que nous administrons, nous récoltons des notes par entreprises que nous pouvons mettre à la disposition des visiteurs.  
-Les visiteurs de notre site étant souvent en recherche d'emploi, nous avons souhaité leur proposer des offres directement sur le site choosemycompany.com.  
-Pour cela, notre partenaire - le site d'emploi Regionsjob.com - nous transmet ses offres d'emploi via un flux XML (*simulé ici par un fichier statique*).
- 
-Le code de ce petit projet permet l'import de ces offres dans notre système depuis ligne de commande.
+Grâce aux enquêtes salariés que nous administrons, nous récoltons des notes par entreprise, que nous mettons à disposition des visiteurs.
 
-Un nouveau partenaire - le site JobTeaser.com - nous propose également de rediffuser ses offres d'emploi.  
-(On peut supposer qu'**il y aura probablement d'autres partenaires dans le futur**…)
+Ces visiteurs étant souvent en recherche d’emploi, nous avons souhaité leur proposer des offres directement sur notre site.  
+Notre partenaire actuel – le site d’emploi RegionsJob.com – nous transmet ses offres via un flux XML (simulé ici par un fichier statique).
 
-Commandes utiles :
----
+Ce projet contient un script permettant l’import de ces offres via la ligne de commande.
 
-- `./init.sh` pour initialiser et lancer le projet
-- `./run-import.sh` pour lancer l'import
-- `./clean.sh` pour arrêter et nettoyer le projet
-- http://localhost:8000/ (`root` / `root`): interface phpMyAdmin pour visualiser le contenu de la base de donnée
+Un nouveau partenaire – le site JobTeaser.com – souhaite également proposer ses offres sur notre plateforme.
 
-A réaliser en 1h30 :
----
-Mettez à jour le code (et le modèle de données si besoin) pour importer le nouveau flux `jobteaser.json`.  
-Le code de départ est très imparfait et conçu pour un seul partenaire.  
-Faites le marcher pour le second partenaire ET refactorez-le pour le rendre maintenable / évolutif...
+> Il est probable que d'autres partenaires soient ajoutés à l’avenir.
 
-Si vous aviez plus de temps :
----
-Quelles seraient les évolutions que vous proposeriez pour améliorer ce code (découpage, optimisations, sécurisation...) ?
+## À réaliser en 1h30
 
-:warning: Le but de ce test est de vérifier votre capacité à organiser le code (pas seulement à le faire marcher).
+- Adapter le code pour importer un nouveau flux JSON (`jobteaser.json`)
+- Adapter si besoin le modèle de données
+- Refactoriser le code existant (initialement conçu pour un seul partenaire)
+
+Ce test a pour but d’évaluer :
+- Votre capacité à structurer un code existant
+- Votre respect des principes de conception (POO, SOLID, design patterns)
+- Votre capacité à anticiper l’évolutivité du système
+
+## Critères d’évaluation
+
+- Qualité du code : lisibilité, découpage, tests
+- Robustesse : gestion des erreurs, des exceptions, validation des données
+- Compréhension du besoin : adaptation pertinente du code existant (Open/Close, etc.)
+- Propreté du code : indentation, nommage, respect des conventions
+
+## Si vous aviez plus de temps
+
+Ajoutez un fichier `UPGRADE.md` pour détailler les évolutions que vous auriez envisagées avec plus de temps (découpage, tests, performances, sécurité...).
+
+## Commandes utiles
+
+```bash
+./init.sh        # Initialise et lance le projet
+./run-import.sh  # Lance l’import des offres
+./clean.sh       # Stoppe et nettoie l’environnement
