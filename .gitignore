@@ -1,12 +1,18 @@
-# PhpStorm
+# IDEs
 .idea/
-.idea/*
-# Visual studio
 .vscode/
-.vscode/*
 
 # Composer
 vendor/
 
-# PHPUnit
+# PHPUnit & Tests
 .phpunit.result.cache
+coverage-html/
+testdox.txt
+
+# Fichiers de test SQLite
+test.db
+*.db-journal
+
+# Fichiers temporaires générés par nos tests
+*.tmp

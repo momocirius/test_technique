@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jobs>
+    <item>
+        <ref>BROKEN001</ref>
+        <!-- Missing closing tag will make this invalid -->
+        <title>Invalid Job
+    </item>

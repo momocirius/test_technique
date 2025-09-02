@@ -1,8 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="tests/bootstrap.php">
+<phpunit 
+    bootstrap="tests/bootstrap.php"
+    colors="true"
+    stopOnFailure="false"
+    processIsolation="false"
+    backupGlobals="false"
+>
     <testsuites>
-        <testsuite name="Application Test Suite">
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Integration">
+            <directory>tests/Integration</directory>
+        </testsuite>
+        <testsuite name="Functional">
+            <directory>tests/Functional</directory>
+        </testsuite>
+        <testsuite name="Performance">
+            <directory>tests/Performance</directory>
+        </testsuite>
+        <testsuite name="All">
             <directory>tests</directory>
+            <!-- <exclude>tests/Performance</exclude> -->
         </testsuite>
     </testsuites>
+
+    <source>
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+        <!-- <exclude>
+            <file>src/Command/ImportCommand.php</file>
+        </exclude> -->
+    </source>
+
+    <coverage>
+        <report>
+            <text outputFile="php://stdout" showUncoveredFiles="true"/>
+            <html outputDirectory="coverage-html" lowUpperBound="50" highLowerBound="80"/>
+        </report>
+    </coverage>
+
+    <!-- <groups>
+        <exclude>
+            <group>performance</group>
+        </exclude>
+    </groups> -->
+
+    <logging>
+        <testdoxText outputFile="testdox.txt"/>
+    </logging>
+
+    <php>
+        <env name="APP_ENV" value="test"/>
+    </php>
 </phpunit>

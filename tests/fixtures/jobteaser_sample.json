@@ -1,0 +1,21 @@
+{
+  "offerUrlPrefix": "http://www.jobteaser.com",
+  "offers": [
+    {
+      "urlPath": "/test/offer-1",
+      "title": "Chef de Projet Digital (H/F)",
+      "description": "Nous recherchons un chef de projet digital expérimenté pour piloter nos projets web et mobile. Vous serez en charge de la coordination des équipes techniques et créatives.",
+      "reference": "JT001",
+      "publishedDate": "Mon Jan 15 10:30:00 CET 2024",
+      "companyname": "WebAgency"
+    },
+    {
+      "urlPath": "/test/offer-2", 
+      "title": "Data Scientist Senior (H/F)",
+      "description": "Rejoignez notre équipe Data Science pour développer des modèles d'intelligence artificielle innovants dans le domaine de la finance.",
+      "reference": "JT002",
+      "publishedDate": "Tue Jan 16 14:45:00 CET 2024",
+      "companyname": "FinanceAI"
+    }
+  ]
+}

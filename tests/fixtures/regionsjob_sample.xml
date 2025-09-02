@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jobs>
+    <item>
+        <ref>TEST001</ref>
+        <title><![CDATA[Développeur PHP Senior (H/F)]]></title>
+        <description><![CDATA[<p>Nous recherchons un développeur PHP Senior pour rejoindre notre équipe...</p>]]></description>
+        <url>http://www.regionsjob.com/test/TEST001</url>
+        <company><![CDATA[TechCorp]]></company>
+        <pubDate>2024/01/15</pubDate>
+    </item>
+    <item>
+        <ref>TEST002</ref>
+        <title><![CDATA[Analyste Fonctionnel (H/F)]]></title>
+        <description><![CDATA[<p>Poste d'analyste fonctionnel dans une équipe dynamique...</p>]]></description>
+        <url>http://www.regionsjob.com/test/TEST002</url>
+        <company><![CDATA[DataSoft]]></company>
+        <pubDate>2024/01/20</pubDate>
+    </item>
+</jobs>

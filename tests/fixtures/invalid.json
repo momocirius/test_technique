@@ -1,0 +1,11 @@
+{
+  "offerUrlPrefix": "http://www.jobteaser.com",
+  "offers": [
+    {
+      "urlPath": "/test/offer-1",
+      "title": "Invalid JSON",
+      // This comment makes it invalid JSON
+      "reference": "INVALID001"
+    }
+  ]
+}

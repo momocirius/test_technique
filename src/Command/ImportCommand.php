@@ -4,34 +4,55 @@ declare(strict_types=1);
 
 namespace App\Command;
 
-use App\Importer\JobsImporter;
-use App\Lister\JobsLister;
+use App\Service\JobImportService;
+use App\Repository\MySqlJobRepository;
+use App\Factory\DatabaseConnectionFactory;
 
-final class ImportCommand
+class ImportCommand
 {
+    private JobImportService $importService;
+
+    public function __construct()
+    {
+        // Dependency Injection manuelle (en attendant un DI Container)
+        $pdo = DatabaseConnectionFactory::createFromGlobals();
+        $repository = new MySqlJobRepository($pdo);
+        $this->importService = new JobImportService($repository);
+    }
+
     public function __invoke(string $file): void
     {
-        self::printMessage('Starting...');
+        self::printMessage('Starting import...');
+        self::printMessage('File: {file}', ['{file}' => $file]);
 
-        $importer = new JobsImporter(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB, $file);
-        $count = $importer->importJobs($file);
+        try {
+            $count = $this->importService->import($file);
+            self::printMessage("> {count} jobs imported successfully.", ['{count}' => $count]);
 
-        self::printMessage("> {count} jobs imported.", ['{count}' => $count]);
-
-        $jobsLister = new JobsLister(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
-        $jobs = $jobsLister->list();
-
-        self::printMessage("> all jobs ({count}):", ['{count}' => count($jobs)]);
-        foreach ($jobs as $job) {
-            self::printMessage(" {id}: {reference} - {title} - {publication}", [
-                '{id}' => $job['id'],
-                '{reference}' => $job['reference'],
-                '{title}' => $job['title'],
-                '{publication}' => $job['publication']
-            ]);
+            $this->displayImportedJobs();
+        } catch (\Exception $e) {
+            self::printMessage("ERROR: {error}", ['{error}' => $e->getMessage()]);
+            throw $e;
         }
 
-        self::printMessage("Terminating...");
+        self::printMessage("Import completed.");
+    }
+
+    private function displayImportedJobs(): void
+    {
+        $jobs = $this->importService->getAllJobs();
+        $totalJobs = count($jobs);
+
+        self::printMessage("> All jobs in database ({count}):", ['{count}' => $totalJobs]);
+        
+        foreach ($jobs as $job) {
+            self::printMessage(" {id}: {reference} - {title} - {publication}", [
+                '{id}' => $job->id ?? 'N/A',
+                '{reference}' => $job->reference,
+                '{title}' => $job->title,
+                '{publication}' => $job->publishedDate
+            ]);
+        }
     }
 
     private static function printMessage(string $message, array $messageParameters = []): void
